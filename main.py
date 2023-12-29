@@ -9,7 +9,7 @@ def handle_random_password(password_length: int) -> str:
     
     symbols: str = input('Symbols (y/n)? ')
     if symbols == 'y':
-        characters += '!"#$%&\'()*+,-./:;<=>?@[]^_{|}~'
+        characters += '!-*._@'
     
     return ''.join(random.choice(characters) for _ in range(password_length))
 
