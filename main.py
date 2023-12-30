@@ -16,7 +16,6 @@ def handle_random_password(password_length: int) -> str:
     
     return ''.join(random.choice(characters) for _ in range(password_length))
 
-
 def handle_pin_password(password_length: int) -> str:
     return ''.join(random.choice(string.digits) for _ in range(password_length))
 
