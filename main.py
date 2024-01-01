@@ -2,7 +2,7 @@ import random
 import string
 
 def validate_password_type(password_type: str) -> bool:
-    return False if password_type != 'random' or password_type != 'pin' else True
+    return True if password_type in ('random', 'pin') else True
 
 def handle_random_password(password_length: int) -> str:
     characters: str = string.ascii_letters
