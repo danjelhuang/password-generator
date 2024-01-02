@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Password Generator",
+    "version": "1.0",
+    "description": "Generate random passwords",
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "images/icon.png"
+      }
+    },
+    "permissions": [
+        "activeTab", 
+        "http://127.0.0.1:5000/*"
+    ]
+  }
+  
