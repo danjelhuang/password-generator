@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('passwordForm');
       return {
           type: form.elements['type'].value,
-          length: form.elements['length'].value,
+          length: form.elements['pwLength'].value,
           numbers: form.elements['numbers'].checked,
           symbols: form.elements['symbols'].checked
       };
