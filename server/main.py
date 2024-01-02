@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 import random
 import string
 
 app = Flask(__name__)
+CORS(app)
 
 def validate_password_type(password_type: str) -> bool:
     return password_type in ('random', 'pin')
@@ -20,7 +22,7 @@ def handle_random_password(password_length: int, numbers: bool, symbols: bool) -
 def handle_pin_password(password_length: int) -> str:
     return ''.join(random.choice(string.digits) for _ in range(password_length))
 
-@app.route('/generate', methods=['GET'])
+@app.route('/generate', methods=['POST'])
 def main():
     data = request.get_json()
     PASSWORD_TYPE: str = data.get('type', '')
