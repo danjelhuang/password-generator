@@ -1,17 +1,18 @@
+from flask import Flask, request, jsonify
+
 import random
 import string
 
-def validate_password_type(password_type: str) -> bool:
-    return True if password_type in ('random', 'pin') else True
+app = Flask(__name__)
 
-def handle_random_password(password_length: int) -> str:
+def validate_password_type(password_type: str) -> bool:
+    return password_type in ('random', 'pin')
+
+def handle_random_password(password_length: int, numbers: bool, symbols: bool) -> str:
     characters: str = string.ascii_letters
-    numbers: str = input('Numbers (y/n)? ')
-    if numbers == 'y':
+    if numbers:
         characters += string.digits
-    
-    symbols: str = input('Symbols (y/n)? ')
-    if symbols == 'y':
+    if symbols:
         characters += '!-*._@'
     
     return ''.join(random.choice(characters) for _ in range(password_length))
@@ -19,19 +20,23 @@ def handle_random_password(password_length: int) -> str:
 def handle_pin_password(password_length: int) -> str:
     return ''.join(random.choice(string.digits) for _ in range(password_length))
 
-def main() -> None:
-    PASSWORD_TYPE: str = input('Password type (random or pin): ')
+@app.route('/generate', methods=['GET'])
+def main():
+    data = request.get_json()
+    PASSWORD_TYPE: str = data.get('type', '')
+    PASSWORD_LENGTH = int(data.get('length', 8))
+    include_numbers = data.get('numbers', True)
+    include_symbols = data.get('symbols', True)
+
     if validate_password_type(PASSWORD_TYPE) == False:
-        raise Exception('Unsupported password type')
-    
-    PASSWORD_LENGTH: int = int(input('Password length: '))
-    password: str
+        return jsonify({'error': 'Unsupported password type'}), 400
 
     if PASSWORD_TYPE == 'random':
-        password = handle_random_password(PASSWORD_LENGTH)
+        password = handle_random_password(PASSWORD_LENGTH, include_numbers, include_symbols)
     else:
         password = handle_pin_password(PASSWORD_LENGTH)
 
-    print(password)
+    return jsonify({'password': password})
 
-main()
+if __name__ == '__main__':
+    app.run(debug=True)
