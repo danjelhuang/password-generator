@@ -24,19 +24,19 @@ def handle_pin_password(password_length: int) -> str:
 def main():
     data = request.get_json()
     PASSWORD_TYPE: str = data.get('type', '')
-    PASSWORD_LENGTH = int(data.get('length', 8))
-    include_numbers = data.get('numbers', True)
-    include_symbols = data.get('symbols', True)
+    PASSWORD_LENGTH: int = int(data.get('length', 8))
+    include_numbers: bool = data.get('numbers', True)
+    include_symbols: bool = data.get('symbols', True)
 
     if validate_password_type(PASSWORD_TYPE) == False:
         return jsonify({'error': 'Unsupported password type'}), 400
 
     if PASSWORD_TYPE == 'random':
-        password = handle_random_password(PASSWORD_LENGTH, include_numbers, include_symbols)
+        password: str = handle_random_password(PASSWORD_LENGTH, include_numbers, include_symbols)
     else:
-        password = handle_pin_password(PASSWORD_LENGTH)
+        password: str = handle_pin_password(PASSWORD_LENGTH)
 
     return jsonify({'password': password})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
