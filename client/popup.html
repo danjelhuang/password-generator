@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="width: 400px;height: 300px;">
 
 <head>
     <meta charset="UTF-8">
@@ -25,15 +25,20 @@
                         <label for="passwordLength">Password Length:</label>
                         <input type="number" class="form-control" id="passwordLength" name="pwLength" min="1" value="8">
                     </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="includeNumbers" name="numbers" checked>
-                        <label class="form-check-label" for="includeNumbers">Include Numbers</label>
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="includeNumbers" name="numbers" checked>
+                            <label class="custom-control-label" for="includeNumbers">Include Numbers</label>
+                        </div>
                     </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="includeSymbols" name="symbols" checked>
-                        <label class="form-check-label" for="includeSymbols">Include Symbols</label>
+                    <div class="form-group">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="includeSymbols" name="symbols" checked>
+                            <label class="custom-control-label" for="includeSymbols">Include Symbols</label>
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-primary" id="generateBtn">Generate Password</button>
+                    
+                    <button type="button" class="btn btn-success" id="generateBtn">Generate Password</button>
                     
                     <div class="form-group mt-4">
                         <label for="generatedPassword">Generated Password:</label>
