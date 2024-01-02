@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body>
-    <h1>Password Generator</h1>
-    <form id="passwordForm">
-        <label for="passwordType">Password Type:</label>
-        <select id="passwordType" name="type">
-            <option value="random">Random</option>
-            <option value="pin">PIN</option>
-        </select>
-
-        <label for="passwordLength">Password Length:</label>
-        <input type="number" id="passwordLength" name="pwLength" min="1" value="8">
-
-        <label for="includeNumbers">Include Numbers:</label>
-        <input type="checkbox" id="includeNumbers" name="numbers" checked>
-
-        <label for="includeSymbols">Include Symbols:</label>
-        <input type="checkbox" id="includeSymbols" name="symbols" checked>
-
-        <button type="button" id="generateBtn">Generate Password</button>
-    </form>
-
-    <p id="passwordDisplay"></p>
-
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center mb-4">Password Generator</h1>
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="passwordType">Password Type:</label>
+                        <select class="form-control" id="passwordType" name="type">
+                            <option value="random">Random</option>
+                            <option value="pin">PIN</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordLength">Password Length:</label>
+                        <input type="number" class="form-control" id="passwordLength" name="pwLength" min="1" value="8">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="includeNumbers" name="numbers" checked>
+                        <label class="form-check-label" for="includeNumbers">Include Numbers</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="includeSymbols" name="symbols" checked>
+                        <label class="form-check-label" for="includeSymbols">Include Symbols</label>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="generateBtn">Generate Password</button>
+                    
+                    <div class="form-group mt-4">
+                        <label for="generatedPassword">Generated Password:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="generatedPassword" readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="copyBtn">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="popup.js"></script>
 </body>
+
 </html>
