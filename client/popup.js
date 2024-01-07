@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
             type: form.elements["type"].value,
             length: form.elements["pwLength"].value,
             numbers: form.elements["numbers"].checked,
-            symbols: form.elements["symbols"].checked,
+            symbols: form.elements["symbols"].value,
         };
     }
 

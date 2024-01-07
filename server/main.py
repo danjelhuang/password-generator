@@ -10,12 +10,12 @@ CORS(app)
 def validate_password_type(password_type: str) -> bool:
     return password_type in ('random', 'pin')
 
-def handle_random_password(password_length: int, numbers: bool, symbols: bool) -> str:
+def handle_random_password(password_length: int, numbers: bool, symbols: str) -> str:
     characters: str = string.ascii_letters
     if numbers:
         characters += string.digits
-    if symbols:
-        characters += '!-*._@'
+    
+    characters += symbols
     
     return ''.join(random.choice(characters) for _ in range(password_length))
 
@@ -28,13 +28,13 @@ def main():
     PASSWORD_TYPE: str = data.get('type', '')
     PASSWORD_LENGTH: int = int(data.get('length', 8))
     include_numbers: bool = data.get('numbers', True)
-    include_symbols: bool = data.get('symbols', True)
+    symbols: str = data.get('symbols', '')
 
     if validate_password_type(PASSWORD_TYPE) == False:
         return jsonify({'error': 'Unsupported password type'}), 400
 
     if PASSWORD_TYPE == 'random':
-        password: str = handle_random_password(PASSWORD_LENGTH, include_numbers, include_symbols)
+        password: str = handle_random_password(PASSWORD_LENGTH, include_numbers, symbols)
     else:
         password: str = handle_pin_password(PASSWORD_LENGTH)
 
